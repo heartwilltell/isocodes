@@ -1,6 +1,7 @@
 package isocodes
 
 import (
+	"sort"
 	"strings"
 )
 
@@ -69,6 +70,21 @@ func StringToCurrencyCode(code string) (CurrencyCode, error) {
 	}
 
 	return c, nil
+}
+
+// ListCurrencyCodes returns a list of CurrencyCode.
+func ListCurrencyCodes() []CurrencyCode {
+	codes := make([]CurrencyCode, 0, len(stringToCurrencyCode))
+
+	for _, c := range stringToCurrencyCode {
+		codes = append(codes, c)
+	}
+
+	sort.Slice(codes, func(i, j int) bool {
+		return codes[i].String() < codes[j].String()
+	})
+
+	return codes
 }
 
 const (

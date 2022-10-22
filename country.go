@@ -1,6 +1,7 @@
 package isocodes
 
 import (
+	"sort"
 	"strings"
 )
 
@@ -72,6 +73,21 @@ func StringToCountryCode(code string) (CountryCode, error) {
 	}
 
 	return c, nil
+}
+
+// ListCountryCodes returns a list of CountryCode.
+func ListCountryCodes() []CountryCode {
+	codes := make([]CountryCode, 0, len(stringToCountryCode))
+
+	for _, c := range stringToCountryCode {
+		codes = append(codes, c)
+	}
+
+	sort.Slice(codes, func(i, j int) bool {
+		return codes[i].String() < codes[j].String()
+	})
+
+	return codes
 }
 
 // Enumeration of ISO 3166-1 country codes.

@@ -2,6 +2,7 @@ package isocodes
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -1835,4 +1836,20 @@ func TestStringToCurrencyCode(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestListCurrencyCodes(t *testing.T) {
+	t.Run("ListCurrencyCodes", func(t *testing.T) {
+		got := ListCurrencyCodes()
+
+		if !sort.SliceIsSorted(got, func(i, j int) bool {
+			return got[i].String() < got[j].String()
+		}) {
+			t.Errorf("ListCurrencyCodes() should return sorted slice")
+		}
+
+		if len(got) != len(stringToCurrencyCode) {
+			t.Errorf("ListCurrencyCodes() should have len == %d", len(stringToCurrencyCode))
+		}
+	})
 }
