@@ -6,12 +6,12 @@ on:
       - published
   push:
     branches:
-      - master
+      - main
   pull_request:
     paths-ignore:
       - '.github/workflows/pr.yml'
     branches:
-      - master
+      - main
 
 jobs:
   build:
