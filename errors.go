@@ -9,6 +9,8 @@ const (
 	// of unmarshalling code to json.
 	ErrUnmarshalJSON Error = "failed to unmarshal json"
 
+	// ErrInvalidStringCode - indicates an error in the process
+	// of converting string representation to code type.
 	ErrInvalidStringCode Error = "invalid string representation of the code"
 )
 
